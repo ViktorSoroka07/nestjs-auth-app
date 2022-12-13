@@ -17,7 +17,7 @@ export class AuthService {
 
     const user = await this.usersService.findUserByEmail(email);
 
-    if (!(await user.validatePassword(password))) {
+    if (!user || !(await user.validatePassword(password))) {
       throw new UnauthorizedException();
     }
 
